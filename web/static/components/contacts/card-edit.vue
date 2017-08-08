@@ -338,34 +338,6 @@
         let url = '/api/v2/card/' + this.item.id;
         this.$http.put(url, { card: { status: '0'} });
       },
-      updateCard(){
-        if (this.allowUpdate) {
-          let url = '/api/v2/card/' + this.item.id;
-          this.$http.put(url, { card: this.item });
-        }
-      },
-
-      boardColumnChange(data) {
-        this.$set(this.item, 'board_id', data.boardId);
-        this.$set(this.item, 'board_column_id', data.boardColumnId);
-        this.updateCard();
-
-        // Update the card in UI
-        let _card = $('.portlet[data-id=\'' + this.card.id + '\']');
-        let _colSelector = '.column[data-id=\'' + data.boardColumnId + '\']';
-        if(_card.closest(_colSelector).length === 0) {
-          // Card is in different column
-          let _col = $(_colSelector);
-          if(_col.length !== 0) {
-            _col.append(_card);
-          } else {
-            _card.hide();
-          }
-        } else {
-          // Card is in same column
-          _card.show();
-        }
-      },
 
       refreshCard(payload){
         if (payload.activities) {

@@ -42,7 +42,14 @@ export var Pipeline = {
             data: {card : {board_column_id: stage}},
             type: 'PUT',
             headers: {'Authorization': 'Bearer '+jwtToken},
-            url: '/api/v2/card/'+ id
+            url: '/api/v2/card/'+ id,
+            complete: function(response) {
+              console.log(response);
+              let newCard = response.responseJSON.data.board_column.name.trim();
+              console.log(newCard);
+              if(newCard == "Lead in") {
+              alert("Please send the following link to the customer: http://m.me/589019314615856");
+            }}
           });
         }
       }

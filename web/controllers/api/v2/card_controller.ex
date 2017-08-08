@@ -46,6 +46,7 @@ defmodule CercleApi.APIV2.CardController do
   end
 
   def create(conn, %{"card" => card_params}) do
+    Logger.warn "In create card: #{inspect card_params}"
     current_user = CercleApi.Plug.current_user(conn)
     company = Repo.get!(Company, current_user.company_id)
     board = Repo.get!(CercleApi.Board, card_params["board_id"])
@@ -69,6 +70,7 @@ defmodule CercleApi.APIV2.CardController do
   end
 
   def update(conn, %{"id" => id, "card" => card_params}) do
+    Logger.warn "In update card: #{inspect card_params}"
     current_user = CercleApi.Plug.current_user(conn)
     origin_card = Repo.get!(Card, id)
     changeset = Card.changeset(origin_card, card_params)
@@ -76,8 +78,13 @@ defmodule CercleApi.APIV2.CardController do
     case Repo.update(changeset) do
       {:ok, card} ->
         card = Repo.preload(card, [:board_column, board: [:board_columns]])
+        Logger.warn "Card: #{inspect card}"
         CardService.update(current_user, card, origin_card)
-        render(conn, "show.json", card: card)
+        conn
+        |> fetch_session()
+        |> fetch_flash()
+        |> put_flash(:info, "information")
+        |> render("show.json", card: card)
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)
