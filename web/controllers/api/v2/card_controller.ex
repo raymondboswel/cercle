@@ -74,6 +74,9 @@ defmodule CercleApi.APIV2.CardController do
     current_user = CercleApi.Plug.current_user(conn)
     origin_card = Repo.get!(Card, id)
     changeset = Card.changeset(origin_card, card_params)
+    Logger.info "Origin card: #{inspect origin_card}"
+    Logger.info "Card params: #{inspect card_params}"
+    Logger.info "Changeset: #{inspect changeset}"
 
     case Repo.update(changeset) do
       {:ok, card} ->
