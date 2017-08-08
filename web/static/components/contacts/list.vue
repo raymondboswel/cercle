@@ -133,7 +133,7 @@
       },
       exportSelectContacts() {
         let url = '/api/v2/contact/export';
-        this.$http.get(url, {params: { contactIds: this.contactList }})
+        this.$http.post(url, { contactIds: this.contactList })
               .then(resp => {
                 let headers = resp.headers;
                 let contentDisposition = headers.get('Content-Disposition') || '';

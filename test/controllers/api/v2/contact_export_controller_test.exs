@@ -14,7 +14,7 @@ defmodule CercleApi.APIV2.ContactExportControllerTest do
   test "export conact to csv", state do
     contact = insert(:contact)
     csv = CercleApi.APIV2.ContactExportController.csv_content([contact.id])
-    conn = get state[:conn], "/api/v2/contact/export", contact_ids: [contact.id]
+    conn = post state[:conn], "/api/v2/contact/export", contact_ids: [contact.id]
 
     assert response_content_type(conn, :csv) =~ "charset=utf-8"
     assert conn.resp_body == csv

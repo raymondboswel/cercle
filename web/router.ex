@@ -97,7 +97,7 @@ defmodule CercleApi.Router do
     post "/api/v2/register", APIV2.UserController, :create
     post "/api/v2/login", APIV2.SessionController, :create
 
-    get "/api/v2/contact/export", APIV2.ContactExportController, :export
+    post "/api/v2/contact/export", APIV2.ContactExportController, :export
     resources "/api/v2/contact", APIV2.ContactController
     put "/api/v2/contact/:id/update_tags", APIV2.ContactController, :update_tags
     put "/api/v2/contact/:id/utags", APIV2.ContactController, :utags

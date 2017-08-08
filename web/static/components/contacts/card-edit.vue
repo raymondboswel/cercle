@@ -2,7 +2,7 @@
   <div class="col-md-12 card-block">
     <div class="post" v-if="item">
     <div class="pull-right">
-      <button type="button" class="btn btn-primary pull-right browse" v-on:click="browse">See all Cards</button>
+      <button type="button" class="btn btn-primary pull-right browse" v-on:click="browse">BROWSE</button>
       <br />
        <div class="upload-btn btn btn-default archive" style="margin-top: 10px; height: 34px;width: 130px;font-weight:normal;">
         <file-upload
@@ -15,10 +15,10 @@
         </file-upload>
       </div>
       <br />
+      <button type="button" class="btn btn-default archive " v-on:click="openDueDatePicker">DUE DATE</button>
+      <br />
       <button type="button" v-show="item.status === 0" class="btn btn-default archive " v-on:click="archiveCard">ARCHIVE</button>
       <button type="button" v-show="item.status === 1" class="btn btn-default archive " v-on:click="unarchiveCard">UNARCHIVE</button>
-      <br />
-      <button type="button" class="btn btn-default archive " v-on:click="openDueDatePicker">DUE DATE</button>
       <br />
       <br />
       <div class="text-center" style="margin-top:10px;color:grey;">

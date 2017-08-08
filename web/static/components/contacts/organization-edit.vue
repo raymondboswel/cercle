@@ -13,6 +13,7 @@
             :taggable="true"
             :placeholder="Organization"
             :createOption='addOrganization'
+            ref='selectOrganization'
             ></v-select>
         </div>
         <div slot="modal-footer" class="modal-footer">
@@ -73,20 +74,29 @@
     },
     methods: {
       saveOrganization(){
-        let url = '/api/v2/contact/' + this.contact.id;
-        this.$http.put(url, { contact: { organizationId: this.chooseOrganization.id }}).then(resp => {
-          this.$emit('updateOrganization', resp.data.data.organization);
-        });
-        this.openModal = false;
+        if (this.chooseOrganization) {
+          let url = '/api/v2/contact/' + this.contact.id;
+          this.$http.put(url, { contact: { organizationId: this.chooseOrganization.id }}).then(resp => {
+            this.$emit('updateOrganization', resp.data.data.organization);
+          });
+          this.openModal = false;
+        } else {
+          let orgName = this.$refs.selectOrganization.search;
+          if (orgName !== '') {
+            this.addOrganization(orgName, true);
+            this.$refs.selectOrganization.search = '';
+          }
+        }
       },
 
-      addOrganization(item) {
+      addOrganization(item, triggerSaveOrg) {
         let vm = this;
         let url = '/api/v2/organizations';
         this.$http.post(url, { organization: { name: item, companyId: vm.company.id }}).then(resp => {
           this.getOrganizations(function(r){
             vm.organizations = r.data.data;
             vm.chooseOrganization = resp.data.data;
+            if (triggerSaveOrg) { vm.saveOrganization(); }
           });
 
         });

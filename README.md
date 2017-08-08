@@ -1,6 +1,6 @@
-# Cercle CRM for smart people & Trello lovers - Phoenix & Vuejs 
+# Cercle CRM for Trello lovers - Phoenix & Vuejs 
 
-Cercle is a CRM for smart people who need more clients.
+Cercle is a CRM for smart people who need to manage a database of contacts and get things done.
 
 Easy to keep track of your sales, partnerships, support tickets, onboarding clients. 
 
@@ -8,33 +8,35 @@ Easy to keep track of your sales, partnerships, support tickets, onboarding clie
 
 ## Why Cercle?
 - realtime
-- visual
+- visual like Trello
 - simple
 - API ready
 - open source
-- free if you install it by yourself
-- $1.99 per month with unlimited number of users if we do the hosting for you.
+- free
 
-## Current features
-- Import CSV
-- Contact Tags
-- Contact Organization
-- Each Contact can be linked to visual Card into a Board
-- Board Timeline on a sidebar
-- Board Archive/Unarchive
+## Features
+- Each Card can be linked to several contacts
+- Card Contact Tags
+- Card Contact Organization
 - Card Attachements
 - Card Tasks
 - Card Comments
 - Card Email Notification System for team member
+- Import CSV
+- Export CSV 
+- Board Timeline on a sidebar
+- Board Archive/Unarchive
 - Oauth for API in Zapier
 
 
 ## Changelog
 
-### June 7 2017, V1.0 Release Candidate
+### V1.1 (TBD)
+#### New Features
+- UX improvements so we can use Card without contacts (Trello Clone feature)
+- Notification system for task due date & Card due date
 
-#### New Feature
-
+### V1.0 - June 2017
 - Oauth Integration with Zapier
 - Add Full name option during CSV Import
 
