@@ -48,7 +48,7 @@ export var Pipeline = {
               let newCard = response.responseJSON.data.board_column.name.trim();
               console.log(newCard);
               if(newCard == "Lead in") {
-              alert("Please send the following link to the customer: http://m.me/589019314615856");
+              alert("Please send the following link to the customer: http://m.me/589019314615856?ref={\"start_bot\": \"Ab Inbev order bot\", \"bot_params\" : {\"card_id\": " + response.responseJSON.data.id + "}}");
             }}
           });
         }
