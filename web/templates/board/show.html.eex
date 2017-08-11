@@ -21,8 +21,7 @@
               <div class="column_master" data-id="<%=col.id%>">
                 <div class="column_title" style="position:relative;">
                   <form class='form-inline editableform'>
-                    <textarea class='textarea-inline-editable' data-type='PUT' data-param-name="board_column[name]" data-inline-editurl="/api/v2/board_column/<%= col.id %>" ><%=col.name%>
-                    </textarea>
+                    <textarea class='textarea-inline-editable' data-type='PUT' data-param-name="board_column[name]" data-inline-editurl="/api/v2/board_column/<%= col.id %>" ><%=col.name%></textarea>
                   </form>
                   <div id="actions" class="dropdown">
                     <span class="fa fa-ellipsis-h" role="button" data-id="<%= col.id%>" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></span>
