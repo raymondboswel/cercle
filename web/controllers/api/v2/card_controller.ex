@@ -69,6 +69,26 @@ defmodule CercleApi.APIV2.CardController do
     end
   end
 
+  def move_card_to_board_column(conn, %{"card_id" => card_id, "board_column_name" => board_column_name}) do
+    Logger.warn "In move_card_to_board_column: card id: #{inspect card_id} , board column name : #{inspect board_column_name}"
+    current_user = CercleApi.Plug.current_user(conn)
+    origin_card = Repo.get!(Card, card_id)
+    board_column = Repo.get_by(CercleApi.BoardColumn, name: board_column_name)
+    changeset = Card.changeset(origin_card, %{board_column_id: board_column.id})
+    case Repo.update(changeset) do
+      {:ok, card} ->
+        card = Repo.preload(card, [:board_column, board: [:board_columns]])
+        Logger.warn "Card: #{inspect card}"
+        CardService.update(current_user, card, origin_card)
+        conn
+        |> render("show.json", card: card)
+      {:error, changeset} ->
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render(CercleApi.ChangesetView, "error.json", changeset: changeset)
+    end
+  end
+
   def update(conn, %{"id" => id, "card" => card_params}) do
     Logger.warn "In update card: #{inspect card_params}"
     current_user = CercleApi.Plug.current_user(conn)

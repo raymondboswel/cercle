@@ -126,6 +126,7 @@ defmodule CercleApi.Router do
     post "/api/v2/bulk_tag_or_untag_contacts", APIV2.BulkController, :bulk_tag_or_untag_contacts
 
     get "/api/v2/user", APIV2.UserController, :index
+    put "api/v2/card/:card_id/board_column/:board_column_name", APIV2.CardController, :move_card_to_board_column
   end
 
   scope "/admin" , CercleApi.Admin, as: :admin do
