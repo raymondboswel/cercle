@@ -97,6 +97,22 @@ defmodule CercleApi.APIV2.CardController do
     Logger.info "Origin card: #{inspect origin_card}"
     Logger.info "Card params: #{inspect card_params}"
     Logger.info "Changeset: #{inspect changeset}"
+    board_column = Repo.get!(CercleApi.BoardColumn, card_params["board_column_id"])
+
+    case board_column.name do
+      "Order shipped" ->
+        Logger.info "Shipppinng beerreerererer!!!!!!!!!!!!!!!!!!!!!!!!!!!" 
+        contact = Repo.get(CercleApi.Contact, origin_card.contact_ids |> List.first)
+        message = beer_shipped_link(id)
+        CercleApi.SmsService.send_sms(contact.phone, message)
+      "Lead in" ->
+        contact = Repo.get(CercleApi.Contact, origin_card.contact_ids |> List.first)
+        message = beer_order_link(id)
+        CercleApi.SmsService.send_sms(contact.phone, message)
+        Logger.info "Startingbeer order!!!!!!!!!!!!!!!!!!!!!!!!!!!" 
+      _ ->
+        Logger.info "Do nothing"
+    end
 
     case Repo.update(changeset) do
       {:ok, card} ->
@@ -113,6 +129,14 @@ defmodule CercleApi.APIV2.CardController do
         |> put_status(:unprocessable_entity)
         |> render(CercleApi.ChangesetView, "error.json", changeset: changeset)
     end
+  end
+
+  defp beer_order_link(card_id) do
+    "m.me/589019314615856?ref=%7B%22start_bot%22%3A%20%22Ab%20Inbev%20order%20bot%22%2C%20%22bot_params%22%20%3A%20%7B%22#{card_id}%22%3A%201%7D%7D"
+  end
+
+  defp beer_shipped_link(card_id) do
+    "m.me/589019314615856?ref=%7B%22start_bot%22%3A%20%22Ab%20Inbev%20shipped%20bot%22%2C%20%22bot_params%22%20%3A%20%7B%22#{card_id}%22%3A%201%7D%7D"
   end
 
   def delete(conn, %{"id" => id}) do
