@@ -1,4 +1,5 @@
 #board-app {
+  background-color: lightblue;
   .tilt {
     transform: rotate(3deg);
     -moz-transform: rotate(3deg);
@@ -18,10 +19,12 @@
 
   body {
     min-width: 1240px !important;
+    background-color: lightblue;
   }
 
   .container {
     min-width: 1240px !important;
+    background-color: lightblue;
   }
   .column_title {
     height: 50px;
@@ -39,6 +42,7 @@
   .portlet {
     margin: 0 1em 1em 0;
     padding: 0.3em;
+    background-color: lightblue;
   }
   .portlet-header {
     padding: 0.2em 0.3em;
@@ -71,6 +75,7 @@
     overflow: scroll;
     white-space:nowrap;
     overflow-y: hidden;
+    background-color: lightblue;
   }
 
   #board_columns {

@@ -1,7 +1,5 @@
 <!-- Content Header (Page header) -->
 <div id="board-app">
-   Flash: <%= flash_msg(@conn) %>
-
   <board board_id="<%= Poison.encode!(@board.id) %>"  inline-template >
     <div>
 
