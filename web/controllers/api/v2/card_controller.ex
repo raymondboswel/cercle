@@ -132,11 +132,11 @@ defmodule CercleApi.APIV2.CardController do
   end
 
   defp beer_order_link(card_id) do
-    "m.me/589019314615856?ref=%7B%22start_bot%22%3A%20%22Ab%20Inbev%20order%20bot%22%2C%20%22bot_params%22%20%3A%20%7B%22card_id%22%3A%20#{card_id}%7D%7D"
+    "m.me/1821001118123762?ref=%7B%22start_bot%22%3A%20%22Ab%20Inbev%20order%20bot%22%2C%20%22bot_params%22%20%3A%20%7B%22card_id%22%3A%20#{card_id}%7D%7D"
   end
 
   defp beer_shipped_link(card_id) do
-    "m.me/589019314615856?ref=%7B%22start_bot%22%3A%20%22Ab%20Inbev%20shipped%20bot%22%2C%20%22bot_params%22%20%3A%20%7B%22card_id%22%3A%20#{card_id}%7D%7D"
+    "m.me/1821001118123762?ref=%7B%22start_bot%22%3A%20%22Ab%20Inbev%20shipped%20bot%22%2C%20%22bot_params%22%20%3A%20%7B%22card_id%22%3A%20#{card_id}%7D%7D"
   end
 
   def delete(conn, %{"id" => id}) do
