@@ -9,7 +9,7 @@ defmodule CercleApi.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :cercleApi, gzip: false,
-    only: ~w(adminlte css fonts images js favicon.ico robots.txt 1AC8F311D323E9FA653A47C452CAB466.txt)
+    only: ~w(adminlte css fonts images js favicon.ico robots.txt 1AC8F311D323E9FA653A47C452CAB466.txt genii.html)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
